@@ -1,0 +1,201 @@
+@media screen and (min-width: 1200px){
+	.profileWrap .header .banner .picture img{height: 7em!important;}
+
+	/*left menu visible*/
+	.pageWrap .menutop .notification-button{margin-right: 250px!important;}
+}
+@media screen and (max-width: 1200px) {
+	/*menuWrap*/
+	.menuWrap {display: none!important;}
+	.menutop .menu-button{display: inline!important;}
+	.pageWrap{margin-left: 2%!important;}
+	
+	/*left menu visible*/
+	.pageWrap .menutop{width: calc(98% - 361px)!important;margin-left: 0%;}
+	.pageWrap .menutop .logo{ margin-left: 50px!important;}
+	.pageWrap .menutop .search{left: 122px!important;}
+	.pageWrap .menutop .breadcrumbs{padding-left: 90px!important;}
+
+	/*left menu not visible*/
+	#navbar-checkbox:unchecked ~ .pageWrap{margin-left: 250px!important; }
+	#navbar-checkbox:unchecked ~ .pageWrap .menutop .search{left: 110px!important;}
+
+	/*menu*/
+	#navbar-checkbox:checked ~ .pageWrap{margin-left: 250px!important;  }
+	#navbar-checkbox:checked ~ .pageWrap .menutop {width: calc(100% - 612px)!important;}
+	#navbar-checkbox:checked ~ .pageWrap .menutop .logo{margin-left: 0px!important}
+	#navbar-checkbox:checked ~ .pageWrap .menutop .search{left: 70px!important;}
+}	
+
+/*responsive*/
+@media screen and (max-width: 980px) {
+	/*menuWrap*/ /*notificationWrap*/
+	.pageWrap .menutop .notification-button{display: block!important;}
+	.pageWrap .navbar-handle .menu-button{z-index: 200;left: 15px!important;}
+	.menuWrap, .notificationWrap{display: none!important;}
+	.pageWrap .menutop .menu-button, .pageWrap .menutop .notification-button{display: inline!important;}
+	/*todo dit moet automatisch (zoekbalk 40px van de logo)*/
+	.pageWrap .menutop {/* top: 0px!important; */ width: 96%!important;}
+	.pageWrap{/* top: 0px!important; */ margin: 0px!important;width: 96%;margin-left: 2%!important;}
+	.pageWrap .menutop .breadcrumbs{padding-left: 20px!important;}
+	.actionbutton .button-action { right: 130px!important;}
+	#navbar-checkbox:checked ~ .pageWrap .menutop .search{left: 72px!important;}
+	#navbar-checkbox:checked ~ .pageWrap .menutop {width: calc(100% - 280px)!important;}
+	#navbar-checkbox:checked ~ .menuWrap {display: block!important}
+	#navbar-checkbox:checked ~ .pageWrap .menutop .logo{margin-left: 0px!important;}
+}
+/*template*/
+	/*animaties*/
+		/*menu (close:left)*/
+		#navbar-checkbox:checked ~ .pageWrap{/* top: 0px; */ margin-left: 2%;  }
+		#navbar-checkbox:checked ~ .pageWrap .menutop { width: calc(100% - 2% - 361px);}
+		#navbar-checkbox:checked ~ .pageWrap .menutop .menu-button{display: block;}
+		#navbar-checkbox:checked ~ .pageWrap .menutop .logo{margin-left: 50px;}
+		#navbar-checkbox:checked ~ .pageWrap .menutop .search{ left: 122px;}
+		#navbar-checkbox:checked ~ .pageWrap .navbar-handle{ left: 0px; top: 0px; z-index: 2;}
+
+		/*menu (open:left)*/
+		#navbar-checkbox:unchecked ~ .menuWrap{display: block!important;}
+		#navbar-checkbox:unchecked ~ .pageWrap{margin-left: 250px!important; }
+		#navbar-checkbox:unchecked ~ .pageWrap .menutop .logo{margin-left: inherit;}
+		#navbar-checkbox:unchecked ~ .pageWrap .menutop .search{ left: inherit;}
+	/*buttons*/
+	.button-action label {cursor: pointer;}
+	.action-button {color: white; text-decoration: none; padding: 13px 18px; border: 1px solid rgb(119, 87, 87); float: right; margin-top: 30px;}
+	.action-button:hover {background: rgb(184, 109, 86);}
+	.button-follow{}
+	.button-sendmessage{}
+	.disabled-input { border: none;  box-shadow: none;  border-radius: 0px;  background: rgba(108, 219, 81, 0.81);  text-shadow: none;  color: rgb(44, 44, 44); padding: 11px 11px 11px 15px; width: 100%; margin-bottom: 13px;}
+	.input-invisible{display: none;}
+	/*fonts*/
+	body{font-family: Noto Sans, Open Sans, Arial;overflow: hidden;background-color: white;}
+	h1{font-size: 5em; margin-bottom: 4%;}
+	h2 {font-size: 2em;  line-height: 1em; margin-bottom: 1.5%;font-weight: 300;font-family: Open Sans;}
+	h2 a {text-decoration: none; padding: 0px 3px 3px 3px;font-size: 0.8em;}
+	h2 a.profile { color: rgb(173, 0, 0);}
+	h2 a.profile:hover { background: rgb(255, 234, 234);}
+	h2 a.tags{color: rgb(53, 187, 199);}
+	h2 a.tags:hover {background: rgb(229, 252, 255);}
+
+	/*icons*/
+	.icon-nav{width: 23px; margin-top: 5px;}
+	.icons img{border-radius: 50%;}
+	/*other*/
+	.extraLinks a{float: right;}
+	.extraLinks a:first-child{float: left;}
+	input[type=checkbox]:checked ~ post { display: block;}
+
+/*inlogWrap*/
+.inlogWrap {background: url('/img/bg-inlog.png');height: 100vh;background-position: right;-webkit-filter: blur(0px);filter: blur(10px);}
+.inlogWrap .inlog-page{width: 583px;  margin: 0px auto;padding: 70px 0px;}
+.inlogWrap .inlog-page h1{padding-top: 60px;color: white;text-shadow: 1px 1px 1px rgb(68, 48, 48);display: inline;}
+.inlogWrap .inlog-fast div { background-size: 78px; background-repeat: no-repeat; height: 95px;}
+.inlogWrap .inlog-fast {  width: 255px; float: left; display: inline-block;}
+.inlogWrap .inlog-slow { display: inline-block; margin: 31px;}
+.inlogWrap .inlog-slow input[type="text"],.inlogWrap .inlog-slow input[type="password"]{    background: rgb(197, 141, 141);    border: none;    margin-bottom: 11px;    padding: 12px 12px 11px 12px;    border-radius: 2px;    box-shadow: 1px 1px 1px rgb(200, 115, 115);    border-left: 7px solid;    border-right: 6px solid;    border-color: rgb(221, 221, 221);    outline: 0;    width: 243px;    color: rgb(77, 0, 0);    font-size: 17px;}
+.inlogWrap .create-account {display: inline; clear: both;}
+
+
+/*signupWrap*/
+.signupWrap{background: url('/img/bg-inlog.png');height: 100vh;background-position: right;-webkit-filter: blur(0px);filter: blur(10px);}
+.signupWrap .header {padding: 20px 0px; width: 500px; margin: 0px auto;height: 15%;}
+.signupWrap .header h3 { font-size: 1.7em;  font-weight: 600;  color: white;  line-height: 0.75em;  text-transform: uppercase; text-align: center; text-shadow: 1px 1px 1px rgb(44, 44, 44);}
+.signupWrap .header h4 { font-size: 17px;  font-weight: 200;  color: rgba(255,255,255,0.7);  text-transform: none; padding: 7px 0px; text-align: center; text-shadow: 1px 1px 1px rgb(153, 153, 153);}
+.signupWrap .sloganWrap{width: 700px;margin: 2em auto;height: 22%;}
+.signupWrap .sloganWrap .slogan { font-size: 33px; text-align: center; color: White;}
+.signupWrap .sloganWrap .subslogan { font-size: 17px;  font-weight: 200;  color: rgba(255,255,255,0.7);  text-transform: none;  padding: 7px 0px;  text-align: center;  text-shadow: 1px 1px 1px rgb(153, 153, 153);}
+.signupWrap .signup { width: 280px; margin: 0px auto; background: rgba(127, 74, 45, 0.75); clear: both; border-radius: 3px; padding: 30px 30px 40px 30px; box-shadow: 1px -15px 466px 25px rgba(155, 155, 155, 0.2);}
+.signupWrap .login-account {position: absolute; right: 20px; top: -15px;}
+.signupWrap .signup .titel {color: white; font-size: 23px; text-align: center; margin-bottom: 25px;}
+.signupWrap .signup .input { background: rgba(168, 102, 79, 0.64); width: 100%; padding: 11px 11px 11px 15px; color: rgb(232, 232, 232); text-shadow: 1px 1px 1px rgb(42, 42, 42); margin-bottom: 14px;border-radius: 3px; box-shadow: inset 0px 5px 6px 0px rgba(134, 52, 52, 0.45); border: 1px solid rgba(111, 63, 63, 0.94); outline: 0; border-bottom: none; border-top: 1px solid rgba(61, 6, 6, 0.58);}
+.signupWrap .signup .submit {background: rgb(184, 142, 50); border: 1px solid rgba(208, 130, 27, 0.64);border-bottom: 3px solid rgba(66, 43, 0, 0.76);width: 100%;border-radius: 2px;color: white;font-size: 21px;font-family: Open Sans;padding: 3px 0px 9px 0px;}
+
+/*actionbutton*/
+.actionbutton .button-action { z-index: 200; position: fixed; bottom: 25px; right: 210px;}
+
+
+/*pageWrap*/
+.pageWrap { position: relative;display: flex;box-shadow: rgb(219, 219, 219) 1px 0px 10px 2px;border-left: 1px solid rgb(242, 242, 242);margin-left: 250px; margin-right: 360px;z-index: 3; top: 18px;}
+.pageWrap .navbar-handle {z-index: 2; left: -237px; position: absolute; top: 17px;}
+.pageWrap .navbar-handle .menu-button {display: block; position: fixed; top: 18px;left: 2%;padding: 20px 20px 19px 20px;cursor: pointer;opacity: 0.5;}
+.pageWrap .navbar-handle .menu-button:hover { background: rgb(249, 249, 249); opacity: 0.7;}
+.pageWrap .menutop {width: calc(100% - 611px); background: rgb(255, 255, 255); height: 87px;  position: fixed; overflow: hidden!important;border-bottom: 1px solid rgb(244, 244, 244);z-index: 1;top: 18px;box-shadow: 0px 1px 4px 0px rgb(214, 214, 214);}
+.pageWrap .menutop .search { width: calc(100% - 200px); border: none; border-left: 1px solid rgb(210, 210, 210);  background: url('/img/icon-search.png') no-repeat; background-position: 10px 2px; background-size: 23px; display: block; position: absolute; top: 17px; left: 80px; transition: .25s; padding: 6px 0px 7px 40px;}
+.pageWrap .menutop .search:focus { background-color: rgb(242, 242, 242);  outline: 0; border-left: 2px solid rgb(214, 214, 214);}.pageWrap .menutop .logo { position: relative; display: inline; padding: 18px 23px; margin-left: 0px;}
+.pageWrap .menutop .notification-button {display: none; margin-right: 0px; position: absolute; right: 0px; z-index: 3; background: white; padding: 13px 15px 5px 10px; top: 0px;}
+.pageWrap .menutop .notification-button .icons img{height: 38px;}
+.pageWrap .menutop .breadcrumbs { position: absolute; top: 62px; padding-left: 26px; background: rgb(249, 249, 249); padding: 3px 0px 7px 26px; width: 100%; border-top: 1px solid rgb(232, 232, 232); clear: both;}
+.pageWrap .menutop .breadcrumbs ul li {display: inline;font-size: 0.9em;}
+.pageWrap .menutop .breadcrumbs ul li:after {content: " /"; margin: 0px 0px 0px 0px;}
+.pageWrap .menutop .breadcrumbs ul li a { color: rgba(0, 125, 169, 0.86);}
+.pageWrap .container {min-height: 600px; clear: both; float: left; display: block; width: 100%; position: relative; background: rgb(253, 253, 253); margin-top: 88px; padding: 0px;height: 100%;}
+.pageWrap .container .container-inner{overflow-y: auto;height: 100vh;margin-top: 0px;}
+.pageWrap .searchresults{display: none; padding: 3px 0px; margin-top: 5px;}
+.pageWrap .searchresults ul{ margin-top: 0px;}
+.pageWrap .searchresults ul li{}
+.pageWrap .searchresults ul li:first-child a { border-top: 1px solid #e3e3e3;}
+.pageWrap .searchresults ul li a {background: white;  display: block;border-bottom: 1px solid;padding: 8px 72px;border-color: rgb(214, 214, 214);}
+.pageWrap .searchresults ul li a:hover{background: #e3e3e3;}
+.pageWrap .searchresults ul li a img{height: 32px;}
+.pageWrap .searchresults ul li a h3 {display: inline-block; margin-left: 40px; top: -10px; position: relative;color: black;}
+.pageWrap .searchresults .close {cursor: pointer; /* background: rgb(209, 72, 72); */ padding: 4px 23px; color: #4C4C4C; margin-top: 11px; text-align: center; font-size: 1em; margin: 3px auto; width: calc(100% - 45px - 142px);border: 1px solid rgb(209, 72, 72);}
+.pageWrap .searchresults .close:hover {color: white; background: rgb(209, 72, 72); }
+
+/*menuWrap*/
+.menuWrap {width: 250px; float: left; height: 100vh; position: fixed; z-index: 2;overflow-y: auto;overflow-x: hidden;top: 17px;}
+.menuWrap .top { padding: 25px 20px 64px 20px; background: rgb(235, 255, 235);}
+.menuWrap .top .icon{cursor: pointer; background: url('/img/menu.png');height: 21px;width: 27px;margin: 20px;}
+.menuWrap .top .logo{}
+.menuWrap .title{color: rgb(182, 182, 182);padding: 9px 0px;text-align: center;font-family: arial;border-top: 1px solid;border-bottom: 1px solid;border-color: rgb(225, 225, 225);font-size: 14px;font-weight: bold;}
+.menuWrap .menu {}
+.menuWrap .menu li ul { border-top: 1px solid rgb(225, 225, 225); margin-top: 12px; padding-left: 20px;}
+.menuWrap .menu li ul > li { line-height: 1.5;}
+.menuWrap .menu li ul > li:first-child { margin-top: 8px;}
+.menuWrap .menu li ul li a{ font-weight: 300; color: rgb(75, 75, 75);}
+.menuWrap .menu li a:hover { color: rgb(38, 127, 12);}
+.menuWrap .menu > li { border-bottom: 1px solid rgb(225, 225, 225); padding: 11px 0px; font-size: 0.9em;}
+.menuWrap .menu > li a{margin-left: 60px;text-decoration: none;color: rgb(36, 36, 36);font-weight: bold;}
+.menuWrap .logo img { width: 180px; margin: 40px 0px -90px 2px;}
+
+/*notificationWrap*/
+.notificationWrap{ width: 300px; height: 100vh; padding: 18px 30px; position: fixed; z-index: 1; float: right; right: 0px; overflow-y: scroll;}
+.notificationWrap .box-notification{box-shadow: 0px 0px 11px 0px rgb(182, 182, 182); border-radius: 2px; cursor: pointer;margin-bottom: 21px;height: 88px;}
+.notificationWrap .box-notification:hover{box-shadow: 0px 0px 11px 0px rgb(218, 218, 218);}
+.notificationWrap .box-notification .icons{display: block;margin-bottom: 15px;float: right;margin: 0px 9px 15px 0px;}
+.notificationWrap .box-notification .icons a img {    width: 30px;    margin-top: 14px;    border-radius: 50%;}
+.notificationWrap .box-notification .icon-chat:hover ~ .bottom h5:after{content: " van chat";}
+.notificationWrap .box-notification .icon-media:hover ~ .bottom h5:after{content: " van media";}
+.notificationWrap .box-notification .icon-contacts:hover ~ .bottom h5:after{content: " van contacten";}
+.notificationWrap .box-notification .icon-settings:hover ~ .bottom h5:after{content: " van instellingen";}
+.notificationWrap .box-notification .bottom{background: rgb(249, 249, 249);  padding: 3px 0px 7px 10px;border-top: 1px solid rgb(232, 232, 232);clear: both;}
+.notificationWrap .menuright{}
+.notificationWrap .moreFromUser h3 { padding: 5px 0px 10px 0px;}
+.notificationWrap .moreFromUser ul li { float: left; margin-left: 3px;}
+
+/*eventlineWrap*/
+.post { border-bottom: 1px solid rgb(219, 228, 255); padding: 8%;}
+.post .inner{max-width: 625px; margin: 0px auto;}
+.post .information { display: block; margin-bottom: 5%;}
+.post .information span {background-size: 25px;  padding-left: 30px;  background-repeat: no-repeat;  background-position: 0px;  font-size: 1.2em;   margin-right: 3%;}
+.post .information .date { background-image: url('/img/icon-date.png'); }
+.post .information .profile { background-image: url('/img/icon-profile-male.png'); }
+.post .information .comments { background-image: url('/img/icon-comments.png'); }
+.post .information .tags{ background: url('') no-repeat; background-size: 25px; padding: 0px 0px 0px 35px; float: right; display: inline; width: 200px;}
+.post .information .tags .tags-inner { /* width: 200px; */ background: rgb(245, 245, 245); padding: 5px; border-left: 1px solid rgb(178, 178, 178);}
+.post .information .tags ul li { display: inline;}
+post { display: none; background: rgb(220, 255, 221); padding: 8%;}
+post form textarea{font-size: 30px; color: rgb(103, 103, 103); border: none; background: inherit; outline: 0; margin-bottom: 0px; font-family: Open Sans;width: 100%;}
+post .title{ min-height: 47px; overflow: hidden;}
+post .content{ font-size: 15px;}
+
+/*profileWrap*/
+.profileWrap{margin-top: -100px;}
+.profileWrap .header > img{opacity: 0.6; width: 100%;}
+.profileWrap .header .banner{position: absolute; top: 55px; padding: 0px 0px 0px 10%; width: 90%;}
+.profileWrap .header .banner .name{color: white; font-size: 2.8em; text-align: center; position: relative; text-align: center; margin-top: 5%;  margin-left: -12%; text-shadow: 1px 1px 1px rgba(40, 0, 0, 0.72);}
+.profileWrap .header .banner .picture{}
+.profileWrap .header .banner .picture img{border-radius: 50%; margin-top: 4%; height: 8em;}
+.profileWrap .header .banner .location{}
+.profileWrap .header .banner .field{}
+.profileWrap .menu-profile ul li {float: left; width: 12%; padding: 2% 1%; text-align: center;}
+.profileWrap .menu-profile ul li a { width: 18%; text-decoration: none; border-bottom: 3px solid blue;}
