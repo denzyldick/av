@@ -55,11 +55,10 @@ class Router
      */
     private function initializeController($controllerParam = "index", $actionParam = "index")
     {
-
-        $controller = $this->checkUserController(strlen($controllerParam) == 0 ? "index" : $controllerParam);
+        
         $action = (strlen($actionParam) == 0 ? "index" : $actionParam);
         try {
-            $concept_controller = "Framework\Controller\\" . ucfirst($controller . "Controller");
+            $concept_controller = "Framework\Controller\\" . ucfirst($controllerParam . "Controller");
             $concept_action = "{$action}Action";
 
             if (class_exists($concept_controller)) {

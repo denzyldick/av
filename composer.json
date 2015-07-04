@@ -9,9 +9,9 @@
   },
   "autoload": {
     "psr-4": {
-      "Koekje\\Model\\": "app/model",
-      "Koekje\\Controller\\": "app/controller",
-      "Koekje\\Library\\": "app/bin"
+      "Framework\\Model\\": "app/model",
+      "Framework\\Controller\\": "app/controller",
+      "Framework\\Library\\": "app/bin"
     }
   }
 }
