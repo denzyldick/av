@@ -2,8 +2,10 @@
 
 namespace Framework\Library;
 
+use AVException as Exception;
 use Klein;
-use Framework\Controller\IndexController;
+use Pimple\Container;
+
 
 /**
  * With this router you can listen to all request and the initialize the controller
@@ -18,11 +20,11 @@ class Router
      */
     private $klein;
     /**
-     * @var \Pimple\Container
+     * @var Container
      */
     private $di;
 
-    public function __construct(\Pimple\Container $di)
+    public function __construct(Container $di)
     {
 
         $this->klein = $di['klein'];
@@ -55,33 +57,31 @@ class Router
      */
     private function initializeController($controllerParam = "index", $actionParam = "index")
     {
-        
+
         $action = (strlen($actionParam) == 0 ? "index" : $actionParam);
         try {
-            $concept_controller = "Framework\Controller\\" . ucfirst($controllerParam . "Controller");
+            $concept_controller = "Framework\Controller\\" . ucfirst($controllerParam);
             $concept_action = "{$action}Action";
 
             if (class_exists($concept_controller)) {
 
                 $instance = new $concept_controller($this->di);
+
+
+                $action = method_exists($instance, $concept_action) ? $concept_action : "indexAction";
+                method_exists($instance, 'initialize') ? $instance->initialize() : "";
+                $instance->setController(get_class($instance));
+                $instance->setAction($action);
+                $instance->$action();
             } else {
-
-
-                $instance = new IndexController($this->di);
+                return $this->klein->response()->code(404);
             }
 
-            $action = method_exists($instance, $concept_action) ? $concept_action : "indexAction";
-            method_exists($instance, 'initialize') ? $instance->initialize() : "";
-            $instance->setController(get_class($instance));
-            $instance->setAction($action);
-            $instance->$action();
-
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
 
             echo $e->getMessage();
         }
     }
-
 
 
 }

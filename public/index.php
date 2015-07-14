@@ -5,9 +5,6 @@
  * @todo 1
  * @version 0.1
  */
-
-	error_reporting(E_ALL);
-	ini_set('display_errors',1);
 /**
  * Include all services
  * */

@@ -1,12 +1,7 @@
-### Vagrant ###
-.vagrant/
-
 ### Composer ###
 vendor/
 composer.lock
-
 ### Phpstorm ###
 .idea/
-
-
-database design.mwb.bak
+### Cache folder ###
+cache/*

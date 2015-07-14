@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: denzyl
- * Date: 2/18/15
- * Time: 10:06 AM
- */
-
 namespace Framework\Library;
 
 /**
@@ -19,7 +12,8 @@ class ViewManager
     private $extension = null;
     private $pre_fix = null;
     private $params = [];
-    private $translator;
+    private $pimple;
+    private $options;
 
 
     /**
@@ -30,12 +24,15 @@ class ViewManager
         $this->pre_fix = $pre_fix;
     }
 
-    /**
-     * @param mixed $translator
-     */
-    public function setTranslator(Translator $translator)
+
+    public function setCaching($cache)
     {
-        $this->translator = $translator;
+        $this->options['cache'] = $cache;
+    }
+
+    public function setDI($pimple)
+    {
+        $this->pimple = $pimple;
     }
 
     /**
@@ -48,19 +45,25 @@ class ViewManager
         if (is_null($this->path)) {
             throw new \Exception("There is no default path for the views");
         }
-        return is_dir($this->path);
+        return is_dir($this->path . ControllerBase::getControllerName());
     }
 
     /**
-     * Render the view
+     * Load the view with twig
      * @param $file_name
-     * @throws \Exception
+     * @param array $params
      */
     public function render($file_name, array $params = null)
     {
+        $params["DI"] = $this->pimple;
+        \Twig_Autoloader::register();
+        $loader = new \Twig_Loader_Filesystem($this->path);
+
+        $twig = new \Twig_Environment($loader,
+            $this->options);
         $this->params = $params;
         $this->addParamsToObject();
-        include($this->path . "/{$this->pre_fix}{$file_name}{$this->extension}");
+        echo $twig->render("{$this->pre_fix}{$file_name}{$this->extension}", $params);
     }
 
     /**

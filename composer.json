@@ -2,10 +2,11 @@
   "require": {
     "klein/klein": "~2.0",
     "pimple/pimple": "~3.0",
-    "swiftmailer/swiftmailer": "5.3.1",
-    "aura/session": "dev-master",
-    "phpunit/phpunit": "4.5.*",
-    "twig/twig":"1.*"
+    "twig/twig":"1.*",
+    "phpunit/phpunit": "4.7.6",
+    "filp/whoops":"1.1.7",
+    "raveren/kint": "^1.0",
+    "mandango/mandango":"dev-master"
   },
   "autoload": {
     "psr-4": {

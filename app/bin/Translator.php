@@ -1,16 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: denzyl
- * Date: 1/28/15
- * Time: 10:06 AM
- */
-
 namespace Framework\Library;
 
 /**
  * A simple translation implementation.
  * @package Framework\Library
+ * @author Denzyl Dick <denzyl@live.nl>
  */
 class Translator
 {
@@ -23,8 +17,12 @@ class Translator
         $this->lang = $lang;
         if (file_exists(__DIR__ . "/../messages/{$this->lang}.php")) {
             $this->messages = include_once(__DIR__ . "/../messages/{$this->lang}.php");
+            foreach($this->messages as $key =>  $value)
+            {
+                $this->$key = $value;
+            }
         } else {
-            throw new \RuntimeException("Can't translate because file doesn't exists.");
+            throw new \AVException("Can't translate because file doesn't exists.");
         }
     }
 
@@ -36,15 +34,4 @@ class Translator
     {
         $this->lang = $lang;
     }
-
-    /**
-     * Get the translation of the given key
-     * @param $key
-     * @return mixed
-     */
-    public function getValue($key)
-    {
-        return $this->messages[$key];
-    }
-
 }

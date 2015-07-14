@@ -2,7 +2,7 @@
 
 
 /*
-*All services
+* All services
 * Design Pattern = Dependency Injection
 */
 $loader = require __DIR__ . "/../../vendor/autoload.php";
@@ -38,7 +38,7 @@ $pimple["mailer"] = function () use ($configuration) {
  * @return Framework\Library\Translator
  */
 $pimple["translate"] = function () {
-    return new \Framework\Library\Translator();
+    return new \Framework\Library\Translator('en-US');
 };
 /**
  * This is the default view manager
@@ -46,34 +46,26 @@ $pimple["translate"] = function () {
  */
 $pimple['viewManager'] = function () use ($configuration, $pimple) {
     $view = new \Framework\Library\ViewManager();
-    $view->setTranslator($pimple['translate']);
     $view->setPath($configuration->view->path);
     $view->setExtension($configuration->view->extension);
     $view->setPreFix($configuration->view->pre_fix);
+    $view->setCaching($configuration->view->cache);
+    $view->setDI($pimple);
     return $view;
 };
 
+/**
+ * Whoops
+ * php_errors for the cool kids
+ */
+$whoops = new \Whoops\Run;
+$whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
+$whoops->register();
 
 /**
- * Doctrine 2 configuration
- * @return EntityManager
- * @throws \Doctrine\ORM\ORMException
+ *
  */
-$pimple["entityManager"] = function () use ($configuration) {
-
-   $config = Setup::createAnnotationMetadataConfiguration(array("model"), true);
-   $driver = new \Doctrine\ORM\Mapping\Driver\AnnotationDriver(new \Doctrine\Common\Annotations\AnnotationReader(), array("model"));
-
-   /*
-    * Registering annotation - all annotation is allowed.
-    */
-   \Doctrine\Common\Annotations\AnnotationRegistry::registerLoader('class_exists');
-   $config->setMetadataDriverImpl($driver);
-   $entityManager = EntityManager::create(
-       (array)$configuration->mysql, $config
-   );
-   /** @var $entityManager \Doctrine\ORM\EntityManager */
-   $platform = $entityManager->getConnection()->getDatabasePlatform();
-   $platform->registerDoctrineTypeMapping('enum', 'string');
-   return $entityManager;
+$pimple['mandango'] = function() use ($configuration)
+{
+    //$mandango = new Mandango\Mondator\
 };

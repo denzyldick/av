@@ -6,6 +6,6 @@
  * @dependency Framework\Library\Translator
  */
 $messages = array(
-    "welcome_test" => "welcome terug %s "
+    "welcome_test" => "welkom user "
 );
 return $messages;
