@@ -9,8 +9,7 @@ class Index extends Controller
 {
 
     public function indexAction()
-    {
-
+    {echo $this->get("ff");
         $this->render("index");
     }
 }
