@@ -10,7 +10,6 @@ class Index extends Controller
 
     public function indexAction()
     {
-
         $this->render("index");
     }
 }

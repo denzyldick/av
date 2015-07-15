@@ -1,12 +1,13 @@
 <?php
-namespace Framework\Library;
+namespace Framework\Library\View;
+use bin\View\Levels;
 
 /**
- * ViewManager
- * Class ViewManager
+ * Render
+ * Class Render
  * @package Framework\Library
  */
-class ViewManager
+class Render
 {
     private $path = null;
     private $extension = null;
@@ -47,7 +48,10 @@ class ViewManager
         }
         return is_dir($this->path . ControllerBase::getControllerName());
     }
-
+    public function setLevel(Levels $level)
+    {
+        $this->level = $level;
+    }
     /**
      * Load the view with twig
      * @param $file_name
@@ -56,14 +60,15 @@ class ViewManager
     public function render($file_name, array $params = null)
     {
         $params["DI"] = $this->pimple;
+
         \Twig_Autoloader::register();
-        $loader = new \Twig_Loader_Filesystem($this->path);
+        $loader = new \Twig_Loader_Filesystem(__DIR__."/../../".$this->path);
 
         $twig = new \Twig_Environment($loader,
             $this->options);
         $this->params = $params;
         $this->addParamsToObject();
-        echo $twig->render("{$this->pre_fix}{$file_name}{$this->extension}", $params);
+        echo $twig->render(strtolower("{$this->pre_fix}{$file_name}{$this->extension}"), $params);
     }
 
     /**
@@ -83,7 +88,7 @@ class ViewManager
      */
     public function setPath($path)
     {
-        $this->path = __DIR__ . "/{$path}";
+        $this->path = "{$path}";
     }
 
     /**

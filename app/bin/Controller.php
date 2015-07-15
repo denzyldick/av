@@ -1,5 +1,7 @@
 <?php
 namespace Framework\Library;
+use Pimple\Container;
+use bin\View\Levels;
 
 
 /**
@@ -22,11 +24,11 @@ abstract class Controller
      */
     protected $request;
     /**
-     * @var \Pimple\Container $di
+     * @var Container $di
      */
     protected $di;
 
-    /** @var  ViewManager $view */
+    /** @var  Render $view */
     protected $view;
     /** @var Translator $translator */
     protected $translator;
@@ -37,7 +39,7 @@ abstract class Controller
      * @param \Klein\ServiceProvider $service
      * @param \Framework\DI $di
      */
-    public function __construct(\Pimple\Container $di)
+    public function __construct(Container $di)
     {
         /**
          * @var \Klein\Klein $klein
@@ -78,45 +80,48 @@ abstract class Controller
      *
      * @param $key
      */
-    public function get($key = null)
+    public function get($key)
     {
-        $raw_params = $this->request->params();
 
-        $clean_params = array();
-        $params = array_filter(array_map("strtoupper", explode("/", $raw_params[0])));
-
-        array_shift($params);
-
-
-        if (@$params[0] == strtoupper($this->getControllerName()) || $params[0] == strtoupper($this->getActionName())) {
-            unset($params[0]);
-        }
-        if (@$params[1] == strtoupper($this->getActionName())) {
-            unset($params[1]);
-        }
-
-        $tmp_array = array_map("strtolower", array_values($params));
-
-        if (is_null($key)) {
-            $i = 0;
-
-
-            for ($i; $i < count($tmp_array); $i = $i + 2) {
-
-
-                if (array_key_exists($i + 1, $tmp_array)) {
-                    $clean_params[strtolower($tmp_array[$i])] = strtolower($tmp_array[$i + 1]);
-                } else if (array_key_exists($i + 2, $tmp_array)) {
-
-                    break;
-                }
-
-            }
-            return new  \Klein\DataCollection\DataCollection($clean_params);
-        } else {
-            $dataCollection = new \Klein\DataCollection\DataCollection($tmp_array);
-            return $dataCollection->get($key);
-        }
+        return $this->request->param($key);
+//        $raw_params = $this->request->params();
+//        \d($raw_params);
+//        $clean_params = array();
+//        $params = array_filter(array_map("strtoupper", explode("/", $raw_params[0])));
+//
+//        array_shift($params);
+//
+//
+//        if (@$params[0] == strtoupper($this->getControllerName()) || $params[0] == strtoupper($this->getActionName())) {
+//            unset($params[0]);
+//        }
+//        if (@$params[1] == strtoupper($this->getActionName())) {
+//            unset($params[1]);
+//        }
+//
+//        $tmp_array = array_map("strtolower", array_values($params));
+//
+//        if (is_null($key)) {
+//            $i = 0;
+//
+//
+//            for ($i; $i < count($tmp_array); $i = $i + 2) {
+//
+//
+//                if (array_key_exists($i + 1, $tmp_array)) {
+//                    $clean_params[strtolower($tmp_array[$i])] = strtolower($tmp_array[$i + 1]);
+//                } else if (array_key_exists($i + 2, $tmp_array)) {
+//
+//                    break;
+//                }
+//
+//            }
+//            return new  \Klein\DataCollection\DataCollection($clean_params);
+//        } else {
+//            $dataCollection = new \Klein\DataCollection\DataCollection($tmp_array);
+//            return $dataCollection->get($key);
+//        }
+//
 
 
     }
@@ -230,6 +235,7 @@ abstract class Controller
     {
         $params["di"] = $this->di;
         $params["translate"] = $this->translator;
-        $this->view->render($this->getControllerName() . "/" . $file, $params);
+
+       $this->view->render($this->getControllerName() . "/" . $file, $params);
     }
 }
