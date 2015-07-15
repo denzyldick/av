@@ -1,5 +1,6 @@
 <?php
 namespace Framework\Library;
+use Klein\DataCollection\DataCollection;
 use Pimple\Container;
 use bin\View\Levels;
 
@@ -113,7 +114,7 @@ abstract class Controller
                 }
 
             }
-        $dataCollection = new \Klein\DataCollection\DataCollection($clean_params);
+        $dataCollection = new DataCollection($clean_params);
         return $dataCollection->get($key);
 
     }
@@ -145,7 +146,7 @@ abstract class Controller
     /**
      * Get cookie
      *
-     * @return \Klein\DataCollection\DataCollection
+     * @return DataCollection
      */
 
     public function cookies()
