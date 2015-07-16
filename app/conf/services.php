@@ -42,10 +42,10 @@ $pimple["translate"] = function () {
 };
 /**
  * This is the default view manager
- * @return \Framework\Library\View
+ * @return \Framework\Library\ViewManager
  */
 $pimple['viewManager'] = function () use ($configuration, $pimple) {
-    $view = new \Framework\Library\View\Render();
+    $view = new \Framework\Library\ViewManager();
     $view->setPath($configuration->view->path);
     $view->setExtension($configuration->view->extension);
     $view->setPreFix($configuration->view->pre_fix);

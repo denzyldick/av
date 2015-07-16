@@ -1,8 +1,5 @@
 <?php
 namespace Framework\Library;
-use Klein\DataCollection\DataCollection;
-use Pimple\Container;
-use bin\View\Levels;
 
 
 /**
@@ -25,11 +22,11 @@ abstract class Controller
      */
     protected $request;
     /**
-     * @var Container $di
+     * @var \Pimple\Container $di
      */
     protected $di;
 
-    /** @var  Render $view */
+    /** @var  ViewManager $view */
     protected $view;
     /** @var Translator $translator */
     protected $translator;
@@ -40,7 +37,7 @@ abstract class Controller
      * @param \Klein\ServiceProvider $service
      * @param \Framework\DI $di
      */
-    public function __construct(Container $di)
+    public function __construct(\Pimple\Container $di)
     {
         /**
          * @var \Klein\Klein $klein
@@ -81,12 +78,10 @@ abstract class Controller
      *
      * @param $key
      */
-    public function get($key)
+    public function get($key = null)
     {
-        if (!empty($this->request->param($key)) ) {
-            return $this->request->param($key);
-        }else{
         $raw_params = $this->request->params();
+
         $clean_params = array();
         $params = array_filter(array_map("strtoupper", explode("/", $raw_params[0])));
 
@@ -100,10 +95,13 @@ abstract class Controller
             unset($params[1]);
         }
 
-
         $tmp_array = array_map("strtolower", array_values($params));
 
-            for ($i=0; $i < count($tmp_array); $i = $i + 2) {
+        if (is_null($key)) {
+            $i = 0;
+
+
+            for ($i; $i < count($tmp_array); $i = $i + 2) {
 
 
                 if (array_key_exists($i + 1, $tmp_array)) {
@@ -114,10 +112,12 @@ abstract class Controller
                 }
 
             }
-        $dataCollection = new DataCollection($clean_params);
-        return $dataCollection->get($key);
+            return new  \Klein\DataCollection\DataCollection($clean_params);
+        } else {
+            $dataCollection = new \Klein\DataCollection\DataCollection($tmp_array);
+            return $dataCollection->get($key);
+        }
 
-    }
 
     }
 
@@ -146,7 +146,7 @@ abstract class Controller
     /**
      * Get cookie
      *
-     * @return DataCollection
+     * @return \Klein\DataCollection\DataCollection
      */
 
     public function cookies()
@@ -230,7 +230,6 @@ abstract class Controller
     {
         $params["di"] = $this->di;
         $params["translate"] = $this->translator;
-
-       $this->view->render($this->getControllerName() . "/" . $file, $params);
+        $this->view->render($this->getControllerName() . "/" . $file, $params);
     }
 }
