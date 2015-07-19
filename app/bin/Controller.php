@@ -1,6 +1,10 @@
 <?php
 namespace Framework\Library;
 
+use Framework\Library\Exception\UnknownParameter;
+use Klein\DataCollection\DataCollection;
+use Klein\Exceptions\UnhandledException;
+use Pimple\Container;
 
 /**
  *Controller base for every controller
@@ -22,11 +26,11 @@ abstract class Controller
      */
     protected $request;
     /**
-     * @var \Pimple\Container $di
+     * @var Container $di
      */
     protected $di;
 
-    /** @var  ViewManager $view */
+    /** @var  Render $view */
     protected $view;
     /** @var Translator $translator */
     protected $translator;
@@ -37,7 +41,7 @@ abstract class Controller
      * @param \Klein\ServiceProvider $service
      * @param \Framework\DI $di
      */
-    public function __construct(\Pimple\Container $di)
+    public function __construct(Container $di)
     {
         /**
          * @var \Klein\Klein $klein
@@ -78,46 +82,44 @@ abstract class Controller
      *
      * @param $key
      */
-    public function get($key = null)
+    public function get($key)
     {
-        $raw_params = $this->request->params();
+        try {
 
-        $clean_params = array();
-        $params = array_filter(array_map("strtoupper", explode("/", $raw_params[0])));
+            if (!empty($this->request->param($key))) {
+                return $this->request->param($key);
+            } else {
+                $raw_params = $this->request->params();
+                $params = array_filter(array_map("strtoupper", explode("/", $raw_params[0])));
 
-        array_shift($params);
-
-
-        if (@$params[0] == strtoupper($this->getControllerName()) || $params[0] == strtoupper($this->getActionName())) {
-            unset($params[0]);
-        }
-        if (@$params[1] == strtoupper($this->getActionName())) {
-            unset($params[1]);
-        }
-
-        $tmp_array = array_map("strtolower", array_values($params));
-
-        if (is_null($key)) {
-            $i = 0;
+                unset($params[0]);
+                unset($params['controller']);
+                unset($params['action']);
 
 
-            for ($i; $i < count($tmp_array); $i = $i + 2) {
+                $clean_params = array();
+
+                foreach (array_values($params) as $p) {
+                    $clean_params[$p] = null;
+                    if (isset($params[key($clean_params) + 1])) {
 
 
-                if (array_key_exists($i + 1, $tmp_array)) {
-                    $clean_params[strtolower($tmp_array[$i])] = strtolower($tmp_array[$i + 1]);
-                } else if (array_key_exists($i + 2, $tmp_array)) {
+                        foreach ($params as $v) {
+                            if ($v === $p) {
+                                $clean_params[$p] = $v;
+                            }
+                        }
+                    }
 
-                    break;
+
                 }
+                $dataCollection = new DataCollection($clean_params);
+                return $dataCollection->get($key);
 
             }
-            return new  \Klein\DataCollection\DataCollection($clean_params);
-        } else {
-            $dataCollection = new \Klein\DataCollection\DataCollection($tmp_array);
-            return $dataCollection->get($key);
+        } catch (UnhandledException  $e) {
+            throw new UnknownParameter($e);
         }
-
 
     }
 
@@ -146,7 +148,7 @@ abstract class Controller
     /**
      * Get cookie
      *
-     * @return \Klein\DataCollection\DataCollection
+     * @return DataCollection
      */
 
     public function cookies()
@@ -219,7 +221,6 @@ abstract class Controller
         $controller = $this->getResource($resource)[0];
 
         $action = $this->getResource($resource)[1];
-        $parameters = $this->getResource($resource)[2];
         $location = $controller . "/" . $action;
 
 
@@ -230,6 +231,7 @@ abstract class Controller
     {
         $params["di"] = $this->di;
         $params["translate"] = $this->translator;
+
         $this->view->render($this->getControllerName() . "/" . $file, $params);
     }
 }
