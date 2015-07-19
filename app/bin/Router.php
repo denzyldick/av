@@ -39,11 +39,11 @@ class Router
      */
     public function listen()
     {
+        ////?/[:controller]?/?/[:action]?/?/[*:params]?
         $this->klein->respond("/?/[:controller]?/?/[:action]?/?/[*:params]?", function ($request) {
             $this->initializeController(
                 $request->param('controller', "index"),
-                $request->param('action', 'index'),
-                $request->param('params')
+                $request->param('action', 'index')
             );
 
         });
@@ -58,6 +58,7 @@ class Router
      */
     private function initializeController($controllerParam = "index", $actionParam = "index")
     {
+
         $action = (strlen($actionParam) == 0 ? "index" : $actionParam);
         try {
             $concept_controller = "Framework\Controller\\" . ucfirst($controllerParam);

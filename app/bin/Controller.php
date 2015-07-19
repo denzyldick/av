@@ -1,10 +1,9 @@
 <?php
 namespace Framework\Library;
+use Framework\Library\Exception\UnknownParameter;
 use Klein\DataCollection\DataCollection;
+use Klein\Exceptions\UnhandledException;
 use Pimple\Container;
-use bin\View\Levels;
-
-
 /**
  *Controller base for every controller
  *
@@ -83,41 +82,71 @@ abstract class Controller
      */
     public function get($key)
     {
-        if (!empty($this->request->param($key)) ) {
-            return $this->request->param($key);
-        }else{
-        $raw_params = $this->request->params();
-        $clean_params = array();
-        $params = array_filter(array_map("strtoupper", explode("/", $raw_params[0])));
+        try{
 
-        array_shift($params);
+            if (!empty($this->request->param($key)) ) {
+                return $this->request->param($key);
+            }else{
+                $raw_params = $this->request->params();
+                $clean_params = array();
+                $params = array_filter(array_map("strtoupper", explode("/", $raw_params[0])));
 
-
-        if (@$params[0] == strtoupper($this->getControllerName()) || $params[0] == strtoupper($this->getActionName())) {
-            unset($params[0]);
-        }
-        if (@$params[1] == strtoupper($this->getActionName())) {
-            unset($params[1]);
-        }
+                unset($params[0]);
+                unset($params['controller']);
+                unset($params['action']);
 
 
-        $tmp_array = array_map("strtolower", array_values($params));
+//                if (@$params[0] == strtoupper($this->getControllerName()) || $params[0] == strtoupper($this->getActionName())) {
+//                    unset($params[0]);
+//                }
+//                if (@$params[1] == strtoupper($this->getActionName())) {
+//                    unset($params[1]);
+//                }
 
-            for ($i=0; $i < count($tmp_array); $i = $i + 2) {
+
+               // $tmp_array = array_map("strtolower", array_values($params));
+                $tmp_array = $params;
+
+//                for ($i=key(reset($params)); $i < count($tmp_array); $i = $i + 2) {
+//
+//
+//                    if (array_key_exists($i + 1, $tmp_array)) {
+//                        $clean_params[strtolower($tmp_array[$i])] = strtolower($tmp_array[$i + 1]);
+//                    } else if (array_key_exists($i + 2, $tmp_array)) {
+//
+//                        break;
+//                    }
+//
+//                }
+                $clean_params = array();
+
+                var_dump(array_values($params));
+                foreach (array_values($params) as $p ) {
+                    $clean_params[$p] = null;
+                    var_dump(next($params   ));
+                    if (isset($params[key($clean_params) + 1])) {
 
 
-                if (array_key_exists($i + 1, $tmp_array)) {
-                    $clean_params[strtolower($tmp_array[$i])] = strtolower($tmp_array[$i + 1]);
-                } else if (array_key_exists($i + 2, $tmp_array)) {
+                        foreach ($params as $v) {
+                            if ($v === $p ) {
+                                $clean_params[$p] = $v;
+                            }
+                        }
+                    }
 
-                    break;
+
                 }
+                \Kint::dump($clean_params);
+
+
+                $dataCollection = new DataCollection($clean_params);
+                return $dataCollection->get($key);
 
             }
-        $dataCollection = new DataCollection($clean_params);
-        return $dataCollection->get($key);
-
-    }
+        }catch (UnhandledException  $e)
+        {
+            throw new UnknownParameter($e);
+        }
 
     }
 
