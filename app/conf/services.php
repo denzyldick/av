@@ -14,6 +14,7 @@ include __DIR__ . "/../conf/configuration.php";
  * Initiate a Pimple Container
  */
 $pimple = new \Pimple\Container();
+
 /**
  * Klein
  *
@@ -69,3 +70,9 @@ $pimple['mandango'] = function() use ($configuration)
 {
     //$mandango = new Mandango\Mondator\
 };
+
+/**
+ * Container
+ */
+
+$container = new \Framework\Library\Container($pimple);
