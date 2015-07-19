@@ -5,10 +5,10 @@ namespace Framework\Library;
 
 class Container
 {
-    private $pimple;
+    private static $pimple;
     public function __construct(\Pimple\Container $container)
     {
-        $this->pimple = $container;
+        self::$pimple = $container;
     }
     public static function DI()
     {
