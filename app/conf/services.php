@@ -54,13 +54,6 @@ $pimple['viewManager'] = function () use ($configuration, $pimple) {
     return $view;
 };
 
-/**
- * Whoops
- * php_errors for the cool kids
- */
-$whoops = new \Whoops\Run;
-$whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
-$whoops->register();
 
 /**
  *

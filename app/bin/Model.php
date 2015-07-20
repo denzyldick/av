@@ -5,6 +5,7 @@ namespace Framework\Library;
 
 use Framework\Library\Query\ResultSet;
 use Framework\Library\Query\Set;
+use Framework\Library\Query\Builder;
 
 abstract class Model
 {
@@ -25,12 +26,11 @@ abstract class Model
      */
     public static function find(array $clause,$limit = null)
     {
-        $reflection = new \ReflectionClass(self);
+        $name = get_called_class();
 
-
-        $query = new Query\Builder();
-        $resultSet = $query->select()->from($reflection->getName())->where($clause)->limit($limit);
-
+        $query = new Builder();
+        $resultSet = $query->select()->from($name)->where($clause)->limit($limit)->execute();
+        echo($resultSet);
         $result = new ResultSet();
         foreach ($resultSet as $key => $set ) {
             $set = new Set();
