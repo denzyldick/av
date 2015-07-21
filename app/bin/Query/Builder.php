@@ -3,6 +3,8 @@
 namespace Framework\Library\Query;
 
 
+use Framework\Library\Container;
+use Framework\Library\Exception\AVException;
 use Framework\Library\Query\Statements\Select;
 use Framework\Library\Query\Statements\From;
 
@@ -54,6 +56,10 @@ class Builder
     }
     public function execute()
     {
-        return (string)$this->query;
+       $pdo = (Container::DI()['pdo']);
+        /** @var \PDOStatement $statement */
+       $statement = $pdo->prepare($this->query);
+       return $statement->execute();
+
     }
 }
