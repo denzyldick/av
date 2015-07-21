@@ -8,7 +8,8 @@ $configuration = (object)array(
       "host"=>"localhost",
        "user"=>"root",
        "password"=>'password',
-       "database"=>"framework"
+       "database"=>"framework",
+        "pdo_driver"=>"mysqle"
     ),
     "view" => (object)array(
         "path" => "../view",
