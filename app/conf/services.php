@@ -62,7 +62,23 @@ $pimple['mandango'] = function() use ($configuration)
 {
     //$mandango = new Mandango\Mondator\
 };
+/**
+ * @return null|PDO
+ * @throws \Framework\Library\Exception\AVException
+ */
+$pimple['pdo'] = function() use ($configuration)
+{
+    try{
+        return new PDO("{$configuration->mysql->pdo_driver}:host={$configuration->mysql->host};dbname={$configuration->mysql->database}");
 
+    }catch(PDOException $e)
+    {
+        throw new \Framework\Library\Exception\AVException($e);
+    }finally{
+        return null;
+    }
+
+};
 /**
  * Container
  */
