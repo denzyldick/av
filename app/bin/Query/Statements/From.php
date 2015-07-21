@@ -16,7 +16,7 @@ class From
     public function __construct($table)
     {
 
-            $this->query .= " {$table}";
+            $this->query .= "FROM {$table}";
 
     }
 
