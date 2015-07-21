@@ -18,7 +18,7 @@ class Builder
      * @return $this
      */
     public function select()
-    {   $this->query = new Select();
+    {   $this->query = (string)new Select();
 
         return $this;
     }
@@ -26,11 +26,10 @@ class Builder
     /**
      * @param array $from
      * @return $this
-     * @internal param $name
      */
     public function from($from)
     {
-       $this->query = new From($from);
+       $this->query .= " ".(string)new From($from);
 
         return $this;
     }
@@ -38,6 +37,7 @@ class Builder
     /**
      * @param $clause
      * @return $this
+     * @todo How will I implement this.
      */
     public function where($clause)
     {
@@ -54,6 +54,6 @@ class Builder
     }
     public function execute()
     {
-        return $this->query;
+        return (string)$this->query;
     }
 }
