@@ -16,7 +16,7 @@ abstract class Model
 
     public function __construct()
     {
-        $query = new Query\Builder();
+        $this->query = new Query\Builder();
     }
 
     /**
