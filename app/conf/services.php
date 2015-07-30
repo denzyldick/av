@@ -5,7 +5,6 @@
 * All services
 * Design Pattern = Dependency Injection
 */
-$loader = require __DIR__ . "/../../vendor/autoload.php";
 
 include __DIR__ . "/../conf/configuration.php";
 
@@ -55,13 +54,6 @@ $pimple['viewManager'] = function () use ($configuration, $pimple) {
     return $view;
 };
 
-/**
- * Whoops
- * php_errors for the cool kids
- */
-$whoops = new \Whoops\Run;
-$whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
-$whoops->register();
 
 /**
  *
@@ -70,7 +62,23 @@ $pimple['mandango'] = function() use ($configuration)
 {
     //$mandango = new Mandango\Mondator\
 };
+/**
+ * @return null|PDO
+ * @throws \Framework\Library\Exception\AVException
+ */
+$pimple['pdo'] = function() use ($configuration)
+{
+    try{
+        return new PDO("{$configuration->mysql->pdo_driver}:host={$configuration->mysql->host};dbname={$configuration->mysql->database}");
 
+    }catch(PDOException $e)
+    {
+        throw new \Framework\Library\Exception\AVException($e);
+    }finally{
+        return null;
+    }
+
+};
 /**
  * Container
  */

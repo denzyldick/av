@@ -5,3 +5,5 @@ composer.lock
 .idea/
 ### Cache folder ###
 cache/*
+### Composer.phar###
+composer.phar

@@ -1,16 +1,10 @@
 <?php
 /**
- *Framework bootstrap file
- * @author Denzyl Dick
- * @todo 1
- * @version 0.1
+ * Run framework
  */
-/**
- * Include all services
- * */
-include_once '../app/conf/services.php';
-/**
- * Listen to all requests
- */
-$router = new Framework\Library\Router($pimple);
-$router->listen();
+$loader = require __DIR__ . "/../vendor/autoload.php";
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
+$av = new Framework\Library\AV();
+$av->run();
