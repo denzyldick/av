@@ -7,9 +7,9 @@ $configuration = (object)array(
     "mysql"=>(object)array(
       "host"=>"localhost",
        "user"=>"root",
-       "password"=>'password',
+       "password"=>'123',
        "database"=>"framework",
-        "pdo_driver"=>"mysqle"
+       "pdo_driver"=>"mysql"
     ),
     "view" => (object)array(
         "path" => "../view",

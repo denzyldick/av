@@ -69,13 +69,13 @@ $pimple['mandango'] = function() use ($configuration)
 $pimple['pdo'] = function() use ($configuration)
 {
     try{
-        return new PDO("{$configuration->mysql->pdo_driver}:host={$configuration->mysql->host};dbname={$configuration->mysql->database}");
+        $pdo = new PDO("{$configuration->mysql->pdo_driver}:host={$configuration->mysql->host};dbname={$configuration->mysql->database}",$configuration->mysql->user,$configuration->mysql->password);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        return $pdo;
 
     }catch(PDOException $e)
     {
         throw new \Framework\Library\Exception\AVException($e);
-    }finally{
-        return null;
     }
 
 };

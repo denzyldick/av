@@ -24,13 +24,14 @@ abstract class Model
      * @param null $limit
      * @return Model
      */
-    public static function find(array $clause,$limit = null)
+    public static function find(array $clause = null,$limit = null)
     {
-        $name = get_called_class();
+        $reflection = new \ReflectionClass(get_called_class());
+        $name =        $reflection->getShortName();
         $query = new Builder();
         $resultSet = $query->select()->from($name)->where($clause)->limit($limit)->execute();
-        echo($resultSet);
-        }
+       var_dump($resultSet);
+    }
 
     public function save()
     {

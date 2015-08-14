@@ -43,19 +43,25 @@ class Builder
      */
     public function where($clause)
     {
-        return $this;
+        if(is_null($clause) != false) {
+        $this->query .= " WHERE ";
+        }return $this;
+
     }
 
     /**
      * @param $limit
      * @return $this
      */
-    public function limit($start,$end = null)
+    public function limit($start = null ,$end = null)
     {
-        return $this;
+        if(is_null($start) != false && is_null($end) != false) {
+            return $this;
+        }
     }
     public function execute()
     {
+        var_dump($this->query);
        $pdo = (Container::DI()['pdo']);
         /** @var \PDOStatement $statement */
        $statement = $pdo->prepare($this->query);

@@ -15,7 +15,7 @@ class From
 
     public function __construct($table)
     {
-
+            $table = strtolower($table);
             $this->query .= "FROM {$table}";
 
     }
