@@ -5,8 +5,10 @@ namespace Framework\Library\Query;
 
 use Framework\Library\Container;
 use Framework\Library\Exception\AVException;
+use Framework\Library\Query\Statements\Limit;
 use Framework\Library\Query\Statements\Select;
 use Framework\Library\Query\Statements\From;
+use Framework\Library\Query\Statements\Where;
 
 /**
  * This class creates the query to be executed.
@@ -19,7 +21,7 @@ class Builder
     /**
      * @return $this
      */
-    public function select()
+    public function select() : Builder
     {   $this->query = (string)new Select();
 
         return $this;
@@ -29,7 +31,7 @@ class Builder
      * @param array $from
      * @return $this
      */
-    public function from($from)
+    public function from($from) : Builder
     {
        $this->query .= " ".(string)new From($from);
 
@@ -41,7 +43,7 @@ class Builder
      * @return $this
      * @todo How will I implement this.
      */
-    public function where($clause)
+    public function where($clause) : Builder
     {
         if(is_null($clause) != false) {
         $this->query .= " WHERE ";
@@ -53,15 +55,14 @@ class Builder
      * @param $limit
      * @return $this
      */
-    public function limit($start = null ,$end = null)
+    public function limit($start = null ,$end = null) : Builder
     {
         if(is_null($start) != false && is_null($end) != false) {
             return $this;
         }
     }
-    public function execute()
+    public function execute() : bool
     {
-        var_dump($this->query);
        $pdo = (Container::DI()['pdo']);
         /** @var \PDOStatement $statement */
        $statement = $pdo->prepare($this->query);

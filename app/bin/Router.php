@@ -4,7 +4,7 @@ namespace Framework\Library;
 
 use AVException as Exception;
 use Klein;
-use Pimple\Container;
+use Pimple\Container as Pimple;
 
 
 /**
@@ -24,7 +24,7 @@ class Router
      */
     private $di;
 
-    public function __construct(Container $di)
+    public function __construct(Pimple $di)
     {
 
         $this->klein = $di['klein'];

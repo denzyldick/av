@@ -4,7 +4,7 @@ namespace Framework\Library;
 use Framework\Library\Exception\UnknownParameter;
 use Klein\DataCollection\DataCollection;
 use Klein\Exceptions\UnhandledException;
-use Pimple\Container;
+use Pimple\Container as Pimple;
 
 /**
  *Controller base for every controller
@@ -41,7 +41,7 @@ abstract class Controller
      * @param \Klein\ServiceProvider $service
      * @param \Framework\DI $di
      */
-    public function __construct(Container $di)
+    public function __construct(Pimple $di)
     {
         /**
          * @var \Klein\Klein $klein
@@ -61,7 +61,7 @@ abstract class Controller
      *
      * @return string
      */
-    public function getControllerName()
+    public function getControllerName() :String
     {
 
         return str_replace("Framework\\\\", "", $this->controller);
@@ -72,7 +72,7 @@ abstract class Controller
      *
      * @return string
      */
-    public function getActionName()
+    public function getActionName() : String
     {
         return $this->action;
     }
@@ -180,11 +180,8 @@ abstract class Controller
         $instance->setAction($action);
         $instance->$action($parameters);
     }
-
-    /**
-     * Extract the final path to client want's to be redirected/forwarded
-     */
-    private function getResource($resource)
+    
+    private function getResource($resource) : Array
     {
         $controller = null;
         $action = null;

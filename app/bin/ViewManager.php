@@ -40,7 +40,7 @@ class ViewManager
      * @return bool
      * @throws \Exception
      */
-    private function isPath()
+    private function isPath() : bool
     {
         if (is_null($this->path)) {
             throw new \Exception("There is no default path for the views");
