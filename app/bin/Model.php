@@ -12,12 +12,7 @@ abstract class Model
     /** @var  \Pimple/Container  $di */
     protected $di;
     /** @var  Query\Builder $query */
-    private $query;
-
-    public function __construct()
-    {
-        $this->query = new Query\Builder();
-    }
+    private static $query;
 
     /**
      * @param array $clause
@@ -27,10 +22,8 @@ abstract class Model
     public static function find(array $clause = null,$limit = null)
     {
         $reflection = new \ReflectionClass(get_called_class());
-        $name =        $reflection->getShortName();
-        $query = new Builder();
-        $resultSet = $query->select()->from($name)->where($clause)->limit($limit)->execute();
-       var_dump($resultSet);
+        $builder = new Builder($reflection);
+        return $builder->select()->from()->where($clause)->limit($limit)->execute();
     }
 
     public function save()

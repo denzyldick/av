@@ -9,6 +9,8 @@ class AVException extends Exception{
             /**
              * @todo implement logger
              */
+            echo "<pre>";
             echo $e->getMessage();
+            echo "</pre>";
         }
 }

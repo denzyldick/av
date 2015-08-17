@@ -10,7 +10,7 @@ class Index extends Controller
 
     public function indexAction()
     {
-       User::find(array(),null);
-       $this->render("index");
+       $name = User::find(array(),null)[0];;
+       $this->render("index",array("name" => $name));
     }
 }
