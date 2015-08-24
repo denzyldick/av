@@ -1,0 +1,17 @@
+{
+  "require": {
+    "klein/klein": "~2.0",
+    "pimple/pimple": "~3.0",
+    "twig/twig":"1.*",
+    "phpunit/phpunit": "4.7.6",
+    "filp/whoops":"1.1.7",
+    "raveren/kint": "^1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Framework\\Model\\": "app/model",
+      "Framework\\Controller\\": "app/controller",
+      "Framework\\Library\\": "app/bin"
+    }
+  }
+}
