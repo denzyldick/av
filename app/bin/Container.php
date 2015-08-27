@@ -12,12 +12,12 @@ class Container
 
     public static function set($key, $function)
     {
-        self::$container[$key] = $function;
+        self::$container->$key = $function;
     }
 
     public static function get($key)
     {
-        return self::$container[$key];
+        return self::$container->$key;
     }
 
 }
