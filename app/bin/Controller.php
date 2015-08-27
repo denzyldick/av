@@ -230,8 +230,8 @@ abstract class Controller
 
     public function render($file, array $params = null)
     {
-        $params["di"] = Container::DI();
-        $params["translate"] = $this->translator;
+
+        $params["translate"] = Container::get("translate");
 
         $this->view->render($this->getControllerName() . "/" . $file, $params);
     }
