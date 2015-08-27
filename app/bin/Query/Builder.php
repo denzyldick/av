@@ -98,7 +98,8 @@ class Builder
      */
     public function execute() : Array
     {
-       $pdo = (Container::DI()['pdo']);
+       $pdo = Container::get('pdo');
+
         /** @var \PDOStatement $statement */
        $statement = $pdo->prepare($this->query);
         $statement->execute();

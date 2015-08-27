@@ -1,5 +1,5 @@
 <?php
-namespace Framework\Library\Translator;
+namespace Framework\Library;
 
 class Translator
 {

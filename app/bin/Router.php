@@ -25,9 +25,6 @@ class Router
 
     public function __construct()
     {
-        echo "<pre>";
-        var_dump(Container::DI());
-        echo "</pre>";
         $this->klein = Container::get('klein');
 
     }

@@ -23,7 +23,6 @@ abstract class Model
     {
         $reflection = new ReflectionClass(get_called_class());
         $builder = new Builder($reflection);
-        var_dump($options);
 
         /***
          * Extract where clause from options
