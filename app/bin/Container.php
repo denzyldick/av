@@ -1,19 +1,28 @@
 <?php
 
 namespace Framework\Library;
-
-
-use Pimple\Container as Pimple;
-
+/**
+ * Class Container
+ * @package Framework\Library
+ */
 class Container
 {
-    private static $pimple;
-    public function __construct(Pimple $container)
+    private static $container;
+
+
+    public static function DI()
     {
-        self::$pimple = $container;
+        return self::$container;
     }
-    public static function DI() : Pimple
+
+    public static function set($key, $function)
     {
-        return self::$pimple;
+        self::$container[$key] = $function;
     }
+
+    public static function get($key)
+    {
+        return self::$container[$key];
+    }
+
 }

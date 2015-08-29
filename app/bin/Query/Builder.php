@@ -2,15 +2,13 @@
 
 namespace Framework\Library\Query;
 
-
 use Framework\Library\Container;
-use Framework\Library\Model;
-use Framework\Library\ModelInterface;
-use Framework\Model\User;
+use Framework\Library\Exception\AVException;
 use Framework\Library\Query\Statements\Select;
 use Framework\Library\Query\Statements\From;
 /**
- * This class creates the query to be executed.
+ * Builds a query so that it can be executed instead returning a pdo array it will return
+ * an array of the models you asked for.
  * @author Denzyl Dick<denzyl@live.nl>
  * @package Framework\Library\Query
  */
@@ -29,8 +27,8 @@ class Builder
      * @return $this
      */
     public function select() : Builder
-    {   $this->query = (string)new Select();
-
+    {
+        $this->query = (string)new Select();
         return $this;
     }
 
@@ -40,10 +38,8 @@ class Builder
      */
     public function from() : Builder
     {
-
        $this->query .= " ".(string)new From($this->short_name);
-
-        return $this;
+       return $this;
     }
 
     /**
@@ -53,12 +49,36 @@ class Builder
      */
     public function where($clause) : Builder
     {
-        if(is_null($clause) != false) {
-        $this->query .= " WHERE ";
-        }return $this;
 
+        if(is_null($clause) == false) {
+            $this->query .= " WHERE ";
+
+            foreach($clause as $value)
+            {
+                $this->query .= " {$value} ";
+            }
+        }return $this;
+    }
+    public function order($order):Builder{
+        return $this;
+    }
+    public function group($group) : Builder
+    {
+        return $this;
+    }
+    public function having($having) :Builder
+    {
+        return $this;
     }
 
+    public function options(array $options = null) : Builder{
+        var_dump($options);
+        if(is_null($options) == false)
+        {
+            $this->query .= "{$options[order]} {$options[group]} $options[having]";
+        }
+        return $this;
+    }
     /**
      * @param $limit
      * @return $this
@@ -68,16 +88,23 @@ class Builder
         if(is_null($start) != false && is_null($end) != false) {
             return $this;
         }
+        return $this;
     }
+
+    /**
+     * Exectute the query and return an
+     * array of models
+     * @return array
+     */
     public function execute() : Array
     {
-       $pdo = (Container::DI()['pdo']);
+       $pdo = Container::get('pdo');
+
         /** @var \PDOStatement $statement */
        $statement = $pdo->prepare($this->query);
         $statement->execute();
         $statement->setFetchMode(\PDO::FETCH_CLASS,$this->class_name);
         $obj = $statement->fetchAll();
       return $obj;
-
     }
 }

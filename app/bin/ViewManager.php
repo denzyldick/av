@@ -30,9 +30,9 @@ class ViewManager
         $this->options['cache'] = $cache;
     }
 
-    public function setDI($pimple)
+    public function setDI($di)
     {
-        $this->pimple = $pimple;
+        $this->pimple = $di;
     }
 
     /**

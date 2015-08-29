@@ -11,6 +11,10 @@ namespace Framework\Model;
 
 use Framework\Library\Model;
 
+/**
+ * User model
+ * @package Framework\Model
+ */
 class User extends Model
 {
     private $email;
@@ -21,4 +25,15 @@ class User extends Model
     {
         return "$this->firstname $this->lastname";
     }
+    public function getEmail():String
+    {
+        return $this->email;
+    }
+    public function getLastname(): String{
+        return $this->lastname;
+    }
+    public function getFirstname(): String{
+        return $this->firstname;
+    }
+
 }

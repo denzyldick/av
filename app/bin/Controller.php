@@ -41,14 +41,18 @@ abstract class Controller
      * @param \Klein\ServiceProvider $service
      * @param \Framework\DI $di
      */
-    public function __construct(Pimple $di)
-    {
+    public function __construct()
+    {/** @var Container $di */
+
+        $di = Container::DI();
+
         /**
          * @var \Klein\Klein $klein
          */
-        $klein = $di['klein'];
-        $this->view = $di['viewManager'];
-        $this->translator = $di['translate'];
+        $klein = Container::get("klein");
+
+        $this->view = Container::get("viewManager");
+        $this->translator = Container::get("translate");
         $this->request = $klein->request();
         $this->response = $klein->response();
         $this->di = $di;
@@ -171,7 +175,7 @@ abstract class Controller
         $action = $this->getResource($resource)[1];
         $parameters = $this->getResource($resource)[2];
 
-        $instance = new $controller($this->di);
+        $instance = new $controller();
         if (method_exists($instance, "initialize")) {
             $instance->initialize();
         }
@@ -226,8 +230,8 @@ abstract class Controller
 
     public function render($file, array $params = null)
     {
-        $params["di"] = $this->di;
-        $params["translate"] = $this->translator;
+
+        $params["translate"] = Container::get("translate");
 
         $this->view->render($this->getControllerName() . "/" . $file, $params);
     }

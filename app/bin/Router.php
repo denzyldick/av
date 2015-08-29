@@ -4,7 +4,6 @@ namespace Framework\Library;
 
 use AVException as Exception;
 use Klein;
-use Pimple\Container as Pimple;
 
 
 /**
@@ -24,11 +23,9 @@ class Router
      */
     private $di;
 
-    public function __construct(Pimple $di)
+    public function __construct()
     {
-
-        $this->klein = $di['klein'];
-        $this->di = $di;
+        $this->klein = Container::get('klein');
 
     }
 
@@ -65,7 +62,7 @@ class Router
 
             if (class_exists($concept_controller)) {
 
-                $instance = new $concept_controller($this->di);
+                $instance = new $concept_controller();
 
 
                 $action = method_exists($instance, $concept_action) ? $concept_action : "indexAction";

@@ -10,7 +10,7 @@ class AVException extends Exception{
              * @todo implement logger
              */
             echo "<pre>";
-            echo $e->getMessage();
+            var_dump($e->getMessage());
             echo "</pre>";
         }
 }
