@@ -1,10 +1,15 @@
 <?php
 
 namespace Framework\Library;
-
+/**
+ * Class Container
+ * @package Framework\Library
+ */
 class Container
 {
     private static $container;
+
+
     public static function DI()
     {
         return self::$container;
@@ -12,12 +17,12 @@ class Container
 
     public static function set($key, $function)
     {
-        self::$container->$key = $function;
+        self::$container[$key] = $function;
     }
 
     public static function get($key)
     {
-        return self::$container->$key;
+        return self::$container[$key];
     }
 
 }

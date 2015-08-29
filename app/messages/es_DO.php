@@ -1,4 +1,4 @@
 <?php
 return $messages = array(
-    'welcome_test'=>"Hola !"
+    'welcome_test'=>"Hola amigo !"
 );
