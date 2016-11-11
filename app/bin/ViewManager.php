@@ -1,10 +1,10 @@
 <?php
-namespace Framework\Library;
+namespace Av\Library;
 
 /**
  * ViewManager
  * Class ViewManager
- * @package Framework\Library
+ * @package Av\Library
  */
 class ViewManager
 {
@@ -15,24 +15,28 @@ class ViewManager
     private $pimple;
     private $options;
 
-
     /**
-     * @param null $pre_fix
+     * Set an prefix for the file names
+     * @param string $pre_fix
+     * @return ViewManager
      */
-    public function setPreFix($pre_fix)
+    public function setPreFix(string $pre_fix):ViewManager
     {
         $this->pre_fix = $pre_fix;
+        return $this;
     }
 
 
-    public function setCaching($cache)
+    public function setCaching($cache):ViewManager
     {
         $this->options['cache'] = $cache;
+        return $this;
     }
 
-    public function setDI($di)
+    public function setDI($di):ViewManager
     {
         $this->pimple = $di;
+        return $this;
     }
 
     /**
@@ -45,15 +49,15 @@ class ViewManager
         if (is_null($this->path)) {
             throw new \Exception("There is no default path for the views");
         }
-        return is_dir($this->path . ControllerBase::getControllerName());
+        return is_dir($this->path . Controller::getControllerName());
     }
 
     /**
-     * Load the view with twig
-     * @param $file_name
-     * @param array $params
+     * Compile and send the twig file
+     * @param string $file_name
+     * @param array|null $params
      */
-    public function render($file_name, array $params = null)
+    public function render(string $file_name, array $params = null)
     {
         $params["DI"] = $this->pimple;
         \Twig_Autoloader::register();
@@ -78,19 +82,24 @@ class ViewManager
         }
     }
 
+
     /**
-     * @param null $path
+     * @param string $path
+     * @return ViewManager
      */
-    public function setPath($path)
+    public function setPath(string $path):ViewManager
     {
         $this->path = __DIR__ . "/{$path}";
+        return $this;
     }
 
     /**
-     * @param mixed $extension
+     * @param string $extension
+     * @return ViewManager
      */
-    public function setExtension($extension)
+    public function setExtension(string $extension):ViewManager
     {
         $this->extension = $extension;
+        return $this;
     }
 }

@@ -1,10 +1,10 @@
 <?php
 
-namespace Framework\Library;
+namespace Av\Library;
 
-use Framework\Library\Query\ResultSet;
-use Framework\Library\Query\Set;
-use Framework\Library\Query\Builder;
+use Av\Library\Query\ResultSet;
+use Av\Library\Query\Set;
+use Av\Library\Query\Builder;
 use ReflectionClass;
 
 abstract class Model

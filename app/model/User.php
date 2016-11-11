@@ -6,14 +6,14 @@
  * Time: 18:52
  */
 
-namespace Framework\Model;
+namespace Av\Model;
 
 
-use Framework\Library\Model;
+use Av\Library\Model;
 
 /**
  * User model
- * @package Framework\Model
+ * @package Av\Model
  */
 class User extends Model
 {

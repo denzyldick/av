@@ -1,7 +1,7 @@
 <?php
-namespace Framework\Library;
+namespace Av\Library;
 
-use Framework\Library\Exception\UnknownParameter;
+use Av\Library\Exception\UnknownParameter;
 use Klein\DataCollection\DataCollection;
 use Klein\Exceptions\UnhandledException;
 use Pimple\Container as Pimple;
@@ -30,7 +30,7 @@ abstract class Controller
      */
     protected $di;
 
-    /** @var  Render $view */
+    /** @var  ViewManager $view */
     protected $view;
     /** @var Translator $translator */
     protected $translator;
@@ -39,7 +39,7 @@ abstract class Controller
      * @param \Klein\Request $request
      * @param \Klein\Response $response
      * @param \Klein\ServiceProvider $service
-     * @param \Framework\DI $di
+     * @param \Av\DI $di
      */
     public function __construct()
     {/** @var Container $di */
@@ -51,7 +51,7 @@ abstract class Controller
          */
         $klein = Container::get("klein");
 
-        $this->view = Container::get("viewManager");
+        $this->view = Container::get("view");
         $this->translator = Container::get("translate");
         $this->request = $klein->request();
         $this->response = $klein->response();
@@ -68,7 +68,7 @@ abstract class Controller
     public function getControllerName() :String
     {
 
-        return str_replace("Framework\\\\", "", $this->controller);
+        return str_replace("Av\\\\", "", $this->controller);
     }
 
     /**
@@ -174,7 +174,7 @@ abstract class Controller
 
         $action = $this->getResource($resource)[1];
         $parameters = $this->getResource($resource)[2];
-
+        /** @var Controller $instance */
         $instance = new $controller();
         if (method_exists($instance, "initialize")) {
             $instance->initialize();
@@ -185,7 +185,7 @@ abstract class Controller
         $instance->$action($parameters);
     }
     
-    private function getResource($resource) : Array
+    private function getResource($resource) : array
     {
         $controller = null;
         $action = null;
@@ -197,7 +197,7 @@ abstract class Controller
         }
 
         if (isset($resource["controller"]) && strlen($resource["controller"]) > 0) {
-            $controller = "Framework\Controller\\" . $resource["controller"];
+            $controller = "Av\Controller\\" . $resource["controller"];
 
         } else {
             throw new \Exception("Can't initiate an empty controller");

@@ -1,17 +1,20 @@
 {
+  "name":"denzyldick/av",
+  "description":"PHP framework",
   "require": {
     "klein/klein": "~2.0",
     "pimple/pimple": "~3.0",
     "twig/twig":"1.*",
     "phpunit/phpunit": "4.7.6",
     "filp/whoops":"1.1.7",
-    "raveren/kint": "^1.0"
+    "raveren/kint": "^1.0",
+    "vlucas/phpdotenv": "^2.4"
   },
   "autoload": {
     "psr-4": {
-      "Framework\\Model\\": "app/model",
-      "Framework\\Controller\\": "app/controller",
-      "Framework\\Library\\": "app/bin"
+      "Av\\Model\\": "app/model",
+      "Av\\Controller\\": "app/controller",
+      "Av\\Library\\": "app/bin"
     }
   }
 }

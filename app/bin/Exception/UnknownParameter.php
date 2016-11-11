@@ -6,7 +6,7 @@
  * Time: 21:18
  */
 
-namespace Framework\Library\Exception;
+namespace Av\Library\Exception;
 
 
 class UnknownParameter extends AVException

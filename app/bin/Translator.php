@@ -1,19 +1,18 @@
 <?php
-namespace Framework\Library;
+namespace Av\Library;
 /**
  * Simple Tanslator class
- * @package Framework\Library
+ * @package Av\Library
  */
 class Translator
 {
     public function __construct($lang)
     {
-        $file = __DIR__."/../messages/{$lang}.php";
+        $file = __DIR__ . "/../messages/{$lang}.php";
 
-        if(file_exists($file))
-        {
+        if (file_exists($file)) {
             $messages = include($file);
-            foreach ($messages as $key => $value ) {
+            foreach ($messages as $key => $value) {
                 $this->$key = $value;
             }
 

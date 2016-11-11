@@ -1,6 +1,6 @@
 <?php
 
-namespace Framework\Library;
+namespace Av\Library;
 
 use AVException as Exception;
 use Klein;
@@ -9,7 +9,7 @@ use Klein;
 /**
  * With this router you can listen to all request and the initialize the controller
  *
- * @package Framework
+ * @package Av
  * @author  Denzyl<denzyl@live.nl>
  */
 class Router
@@ -57,7 +57,7 @@ class Router
 
         $action = (strlen($actionParam) == 0 ? "index" : $actionParam);
         try {
-            $concept_controller = "Framework\Controller\\" . ucfirst($controllerParam);
+            $concept_controller = "Av\Controller\\" . ucfirst($controllerParam);
             $concept_action = "{$action}Action";
 
             if (class_exists($concept_controller)) {

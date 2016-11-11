@@ -1,14 +1,13 @@
 <?php
 
-namespace Framework\Controller;
+namespace Av\Controller;
 
-use Framework\Library\Controller;
+use Av\Library\Controller;
 
 class Example extends Controller
 {
-	
-	public function indexAction()
-	{
-		$this->render("index",array("hello"=>"Welcome message"));
-	}
+    public function indexAction()
+    {
+        $this->render("index", array("hello" => "Welcome message"));
+    }
 }
