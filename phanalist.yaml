@@ -1,0 +1,8 @@
+enabled_rules: []
+disable_rules: []
+rules:
+  E0009:
+    max_complexity: 10
+  E0007:
+    check_constructor: true
+    max_parameters: 5
