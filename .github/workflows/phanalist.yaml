@@ -2,7 +2,7 @@ name: "Phanalist GitHub action."
 on:
   push:
     branches:
-    - main
+      - "main"
 jobs:
   phanalist:
     runs-on: "linux"
