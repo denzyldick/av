@@ -1,12 +1,12 @@
 {
-  "name":"denzyldick/av",
-  "description":"PHP framework",
+  "name": "denzyldick/av",
+  "description": "PHP framework",
   "require": {
     "klein/klein": "~2.0",
     "pimple/pimple": "~3.0",
-    "twig/twig":"1.*",
+    "twig/twig": "1.*",
     "phpunit/phpunit": "4.7.6",
-    "filp/whoops":"1.1.7",
+    "filp/whoops": "1.1.7",
     "raveren/kint": "^1.0",
     "vlucas/phpdotenv": "^2.4",
     "denzyl/phanalist":"^v0.1.21"
