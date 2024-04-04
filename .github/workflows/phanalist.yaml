@@ -8,11 +8,10 @@ jobs:
     runs-on: "ubuntu-latest"
     steps:
     - uses: actions/checkout@v4.1.2
+    - name: Move mobile app files to root
+      run:  ls -lah
     - name: Run phanalst.
       uses: denzyldick/phanalist-action@v0.0.1
       with:
-        src: "./app"
-    - name: Move mobile app files to root
-      run:  ls -lah
-    
+        src: "./app" 
 
