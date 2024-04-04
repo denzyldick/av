@@ -12,3 +12,7 @@ jobs:
       uses: denzyldick/phanalist-action@v0.0.1
       with:
         src: "./app"
+    - name: Move mobile app files to root
+      run:  ls -lah
+    
+
