@@ -5,7 +5,7 @@ on:
       - "master"
 jobs:
   phanalist:
-    runs-on: "linux"
+    runs-on: "ubuntu-latest"
     steps:
     - uses: actions/checkout@v4.1.2
     - name: Run phanalst.
