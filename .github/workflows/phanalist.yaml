@@ -13,4 +13,4 @@ jobs:
       -  name: Display version
          run: /home/runner/phanalist --help
       -  name: Running phanalist
-         run: /home/runner/phanalist --src=${GITHUB_WORKSPACE}/app --output-format=text
+         run: /home/runner/phanalist --src=${GITHUB_WORKSPACE}/app 
