@@ -12,4 +12,4 @@ jobs:
       -  name: Display version
          run: /home/runner/phanalist --help
       -  name: Running phanalist
-         run: /home/runner/phanalist --src=${GITHUB_WORKSPACE}
+         run: /home/runner/phanalist --src=${GITHUB_WORKSPACE} --output-format=text
