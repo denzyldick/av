@@ -4,19 +4,10 @@ on:
     branches:
       - "master"
 jobs:
-  phanalist:
-    runs-on: "ubuntu-latest"
+  install-phanalist:
+    runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4.1.2
-    - name: Display path
-      run: |
-        pwd
-        ls
-        cd app
-        ls 
-        pwd
-    - name: Run phanalst.
-      uses: denzyldick/phanalist-action@v0.0.1
-      with:
-        src: "/github/workspace/app" 
-
+      -  name: Download phanalist.
+         run: curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/denzyldick/phanalist/main/bin/init.sh | sh
+      -  name: Display version
+         run: ~./phanalist -v
