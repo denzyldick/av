@@ -1,0 +1,35 @@
+<?php
+
+namespace Av;
+
+class Promise {
+
+  public static function exec(Promisable $promisiable) {
+    $promisiable = self();
+    $promisiable->setPromise($promisiable);
+    return $promisiable;
+  }
+
+
+  public function setPromise(Promisable $promisable) {
+    $this->promisiable = $promisable;
+  }
+  public function then(callable $ok, callable $fail) {
+    if (is_callable($ok) && is_callable($fail)) {
+
+      try {
+        $result = $this->wait();
+
+        $ok($result);
+      } catch (\Throwable $e) {
+        $fail($e);
+      }
+    }
+  }
+
+  public function wait($wait = false) {
+    if ($wait === false) {
+      return $this->run();
+    }
+  }
+}
