@@ -4,7 +4,7 @@ namespace Av;
 
 class Promise {
 
-  public static function exec(Promisable $promisiable) {
+  public static function exec(Promisable $promisiable) Promise {
     $promisiable = self();
     $promisiable->setPromise($promisiable);
     return $promisiable;
