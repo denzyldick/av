@@ -11,3 +11,5 @@ jobs:
          run: curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/denzyldick/phanalist/main/bin/init.sh | sh
       -  name: Display version
          run: /home/runner/phanalist --help
+      -  name: Running phanalist
+         run: /home/runner/phanalist --src=./ 
