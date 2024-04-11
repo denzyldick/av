@@ -12,10 +12,9 @@ use Pimple\Container as Pimple;
  *
  * @author Denzyl<denzyl@live.nl>
  */
-abstract class Controller
+class Controller
 {
 
-  private $controller;
   private $action;
 
   /**

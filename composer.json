@@ -8,14 +8,12 @@
     "phpunit/phpunit": "4.7.6",
     "filp/whoops": "1.1.7",
     "raveren/kint": "^1.0",
-    "vlucas/phpdotenv": "^2.4",
-    "denzyl/phanalist":"^v0.1.21"
+    "vlucas/phpdotenv": "^2.4"
   },
   "autoload": {
     "psr-4": {
-      "Av\\Model\\": "app/model",
-      "Av\\Controller\\": "app/controller",
-      "Av\\Library\\": "app/bin"
+      "Av\\": "src/",
+      "Av\\Test\\": "tests/src"
     }
   }
 }

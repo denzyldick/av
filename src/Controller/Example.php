@@ -6,7 +6,7 @@ use Av\Library\Controller;
 
 class Example extends Controller
 {
-    public function indexAction()
+    public function index():void
     {
         $this->render("index", array("hello" => "Welcome message"));
     }
