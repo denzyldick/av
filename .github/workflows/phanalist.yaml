@@ -18,5 +18,5 @@ jobs:
     - name: Run phanalst.
       uses: denzyldick/phanalist-action@v0.0.1
       with:
-        src: "./" 
+        src: "/github/workspace/app" 
 
