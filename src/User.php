@@ -4,14 +4,10 @@ declare(strict=1);
 
 namespace Av\Domain\Entity;
 
-/**
- * User model
- * @package Av\Model
- */
 class User implements Insert, Update, Select {
-  private $email;
-  private $lastname;
-  private $firstname;
+  private string $email;
+  private string $lastname;
+  private string $firstname;
 
   public function getFullname(): String {
     return "$this->firstname $this->lastname";
@@ -25,10 +21,7 @@ class User implements Insert, Update, Select {
   public function getFirstname(): String {
     return $this->firstname;
   }
-
-  /**
-   * Save the user into the database.
-   */
+  
   public function save(Database $store): bool {
 
     $response = $store->query(
@@ -51,8 +44,6 @@ VALUESE(:name, :email,:firstname, :lastname)
   }
 
   public static function new(Database $database, User $user): self {
-
-
     return self();
   }
 }
