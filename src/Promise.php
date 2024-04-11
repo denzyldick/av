@@ -1,4 +1,3 @@
-
 <?php
 
 namespace Av;
@@ -16,7 +15,7 @@ class Promise {
   public function setPromise(Promisable $promisable) {
     $this->promisiable = $promisable;
   }
-  public function then(callable $ok, callable $fail) {
+  public function then(callable $ok, callable $fail): Entity {
     if (is_callable($fail) === false) {
       throw new NotHandlingError();
     }
