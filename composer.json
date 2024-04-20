@@ -6,7 +6,7 @@
     "pimple/pimple": "~3.0",
     "twig/twig": "3.*",
     "phpunit/phpunit": "4.7.6",
-    "filp/whoops": "1.1.7",
+    "filp/whoops": "2.15.4",
     "raveren/kint": "^1.0",
     "vlucas/phpdotenv": "^2.4"
   },
