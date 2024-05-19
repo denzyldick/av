@@ -3,8 +3,6 @@ on:
   push:
     branches:
       - "master"
-  pull_request:
-    types: [opened, reopened]
 jobs:
   install-phanalist:
     runs-on: ubuntu-latest
