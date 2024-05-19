@@ -4,11 +4,11 @@
   "require": {
     "klein/klein": "~2.0",
     "pimple/pimple": "~3.0",
-    "twig/twig": "1.*",
-    "phpunit/phpunit": "4.7.6",
-    "filp/whoops": "1.1.7",
+    "twig/twig": "3.*",
+    "phpunit/phpunit": "9.6.19",
+    "filp/whoops": "2.15.4",
     "raveren/kint": "^1.0",
-    "vlucas/phpdotenv": "^2.4"
+    "vlucas/phpdotenv": "^5.6"
   },
   "autoload": {
     "psr-4": {
