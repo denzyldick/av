@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: denzyl
@@ -9,6 +10,5 @@
 namespace Av\Library\HTTP;
 
 
-class Request
-{
+class Request {
 }

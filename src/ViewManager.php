@@ -1,4 +1,5 @@
 <?php
+
 namespace Av\Library;
 
 /**
@@ -20,20 +21,20 @@ class ViewManager
      * @param string $pre_fix
      * @return ViewManager
      */
-    public function setPreFix(string $pre_fix):ViewManager
+    public function setPreFix(string $pre_fix): ViewManager
     {
         $this->pre_fix = $pre_fix;
         return $this;
     }
 
 
-    public function setCaching($cache):ViewManager
+    public function setCaching($cache): ViewManager
     {
         $this->options['cache'] = $cache;
         return $this;
     }
 
-    public function setDI($di):ViewManager
+    public function setDI($di): ViewManager
     {
         $this->pimple = $di;
         return $this;
@@ -44,7 +45,7 @@ class ViewManager
      * @return bool
      * @throws \Exception
      */
-    private function isPath() : bool
+    private function isPath(): bool
     {
         if (is_null($this->path)) {
             throw new \Exception("There is no default path for the views");
@@ -63,8 +64,10 @@ class ViewManager
         \Twig_Autoloader::register();
         $loader = new \Twig_Loader_Filesystem($this->path);
 
-        $twig = new \Twig_Environment($loader,
-            $this->options);
+        $twig = new \Twig_Environment(
+            $loader,
+            $this->options
+        );
         $this->params = $params;
         $this->addParamsToObject();
         echo $twig->render("{$this->pre_fix}{$file_name}{$this->extension}", $params);
@@ -87,7 +90,7 @@ class ViewManager
      * @param string $path
      * @return ViewManager
      */
-    public function setPath(string $path):ViewManager
+    public function setPath(string $path): ViewManager
     {
         $this->path = __DIR__ . "/{$path}";
         return $this;
@@ -97,7 +100,7 @@ class ViewManager
      * @param string $extension
      * @return ViewManager
      */
-    public function setExtension(string $extension):ViewManager
+    public function setExtension(string $extension): ViewManager
     {
         $this->extension = $extension;
         return $this;

@@ -1,16 +1,16 @@
 <?php
 
-namespace Av\Library;
+namespace Av;
 
 
+use Av\Library\Router;
 use Dotenv\Dotenv;
+use Klein\Klein;
 
-class Application
-{
+class Application {
   private $router;
 
-  public function __construct()
-  {
+  public function __construct() {
     $this->bootstrap();
     $this->router = new Router();
   }
@@ -19,8 +19,7 @@ class Application
    * Enable PHP error reporting
    * @param bool $html
    */
-  public function enableErrorReporting(bool $html = false): Application
-  {
+  public function enableErrorReporting(bool $html = false): Application {
     ini_set("display_errors", 1);
     ini_set("error_reporting", 1);
     $html == true ? ini_set("html_errors", 1) : ini_set('html_errors', 0);
@@ -29,9 +28,9 @@ class Application
 
   /**
    * Start listening to request
+   * @return void
    */
-  public function run()
-  {
+  public function run(): void {
     try {
 
       $this->router->listen();
@@ -44,16 +43,13 @@ class Application
    * Load environment variables
    * @return void
    */
-  private function loadEnv()
-  {
+  private function loadEnv(): void {
     (new Dotenv(__DIR__ . "/../configuration"))->load();
   }
 
-  private function bootstrap(): Application
-  {
-    Container::set("klein", new \Klein\Klein());
+  private function bootstrap(): Application {
+    Container::set("klein", new Klein());
     Container::set("translate", new Translator("es_DO"));
-
     $view = new \Av\Library\ViewManager();
     $view->setPath("/../view");
     $view->setExtension(".twig");
@@ -64,4 +60,3 @@ class Application
     return $this;
   }
 }
-

@@ -5,4 +5,3 @@ error_reporting(E_ALL);
 
 $av = new Av\Library\Application();
 $av->run();
-

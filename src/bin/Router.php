@@ -10,8 +10,7 @@ use Klein;
  * @package Av
  * @author  Denzyl<denzyl@live.nl>
  */
-class Router
-{
+class Router {
   /**
    * @var Klein\Klein $klein
    */
@@ -21,8 +20,7 @@ class Router
    */
   private $di;
 
-  public function __construct()
-  {
+  public function __construct() {
     $this->klein = Container::get('klein');
   }
 
@@ -30,8 +28,7 @@ class Router
    * Listen to  all requests
    * GET,POST,DELETE,HEAD
    */
-  public function listen()
-  {
+  public function listen() {
     ////?/[:controller]?/?/[:action]?/?/[*:params]?
     $this->klein->respond("/?/[:controller]?/?/[:action]?/?/[*:params]?", function ($request) {
       $this->initializeController(
@@ -48,8 +45,7 @@ class Router
    * @param string $controllerParam
    * @param string $actionParam
    */
-  private function initializeController($controllerParam = "index", $actionParam = "index")
-  {
+  private function initializeController($controllerParam = "index", $actionParam = "index") {
 
     $action = (strlen($actionParam) == 0 ? "index" : $actionParam);
     try {
@@ -59,7 +55,6 @@ class Router
       if (class_exists($concept_controller)) {
 
         $instance = new $concept_controller();
-
 
         $action = method_exists($instance, $concept_action) ? $concept_action : "indexAction";
         method_exists($instance, 'initialize') ? $instance->initialize() : "";

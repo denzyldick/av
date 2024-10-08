@@ -1,6 +1,7 @@
 {
   "name": "denzyldick/av",
   "description": "PHP framework",
+  "version": "dev-master",
   "require": {
     "klein/klein": "~2.0",
     "pimple/pimple": "~3.0",

@@ -4,10 +4,8 @@ namespace Av\Library\Exception;
 
 use Exception;
 
-class AVException extends Exception
-{
-  public function __construct(Exception $e)
-  {
+class AVException extends Exception {
+  public function __construct(Exception $e) {
     /**
      * @todo implement logger
      */
@@ -16,4 +14,3 @@ class AVException extends Exception
     echo "</pre>";
   }
 }
-
